@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>jekyll-hashsert | jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string.</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="jekyll-hashsert" />
+<meta name="author" content="Gourav Khunger" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string." />
+<meta property="og:description" content="jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string." />
+<link rel="canonical" href="https://hashsert.gouravkhunger.me/" />
+<meta property="og:url" content="https://hashsert.gouravkhunger.me/" />
+<meta property="og:site_name" content="jekyll-hashsert" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="jekyll-hashsert" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Gourav Khunger"},"description":"jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string.","headline":"jekyll-hashsert","name":"jekyll-hashsert","url":"https://hashsert.gouravkhunger.me/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://hashsert.gouravkhunger.me/feed.xml" title="jekyll-hashsert" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">jekyll-hashsert</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home"><h1 id="jekyllhashsert">Jekyll::Hashsert</h1>
+
+<p>A jekyll plugin that inserts random hashes of custom length into strings.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Add this line to your project’s Gemfile inside the <code class="language-plaintext highlighter-rouge">jekyll_plugins</code> group:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:jekyll_plugins</span> <span class="k">do</span>
+    <span class="c1"># other gems</span>
+    <span class="n">gem</span> <span class="s2">"jekyll-hashsert"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then, enable the plugin by adding it to the <code class="language-plaintext highlighter-rouge">plugins</code> section in the <code class="language-plaintext highlighter-rouge">_config.yml</code> file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">plugins</span><span class="pi">:</span>
+    <span class="c1"># - other plugins</span>
+    <span class="pi">-</span> <span class="s">jekyll-hashsert</span>
+</code></pre></div></div>
+
+<p>And then execute:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h2 id="usage">Usage</h2>
+
+<p>This plugin is essentially a liquid filter. You can pass any string to the filter:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"$"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">hashsert</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="p">}}</span>
+
+The $ symbol will be replaced with a random alphanumeric string of length 64
+</code></pre></div></div>
+
+<p>The output for <code class="language-plaintext highlighter-rouge">{{ hash }}</code> in this case will look something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qehjygof40tqzjeqep7ceho31b52dg6itnmusy7390j1ymklkrnsez04fbkl07rx
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note</strong>: By default, the plugin replaces all the <code class="language-plaintext highlighter-rouge">$</code> symbols in the input string with alphanumeric string hashes of length <code class="language-plaintext highlighter-rouge">64</code>. Each <code class="language-plaintext highlighter-rouge">$</code> will be replaced with a different hash.</p>
+</blockquote>
+
+<h3 id="custom-symbol">Custom symbol</h3>
+
+<p>To use a custom replacement symbol instead of the default <code class="language-plaintext highlighter-rouge">$</code>, please pass it as a parameter to the filter:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"o_o"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">hashsert</span><span class="p">:</span><span class="w"> </span><span class="s2">"_"</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="p">}}</span>
+
+The _ symbol will be replaced while the surrounding text will be preserved.
+Output will look like: o&lt;hash&gt;o.
+</code></pre></div></div>
+
+<p>The output for <code class="language-plaintext highlighter-rouge">{{ hash }}</code> in this case will look something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oxv4y65mxr9c4jwq9upl38kcr0fn8n59w76vqivi441trduejxqkt44wk4zriao56o
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note</strong>: The symbol should only be one character long and should <strong>not</strong> be alphnumeric.</p>
+</blockquote>
+
+<h3 id="custom-length">Custom length</h3>
+
+<p>To set a custom length for the generated hash, pass the required number as a 2nd argument, after the symbol:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"o_o"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">hashsert</span><span class="p">:</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nv">hash</span><span class="w"> </span><span class="p">}}</span>
+
+The _ symbol will be replaced with a string of length 5 while the surrounding text will be preserved.
+Output will look like: o&lt;alphanumeric string of length 5&gt;o.
+</code></pre></div></div>
+
+<p>The output for <code class="language-plaintext highlighter-rouge">{{ hash }}</code> in this case will look something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>on8vl5o
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note</strong>: The 2nd argument should only be an integer. If you intend to set a custom length then you must also set a symbol. You may still pass <code class="language-plaintext highlighter-rouge">$</code> if you wish to retain the default behavior.</p>
+</blockquote>
+
+<h2 id="use-case">Use case</h2>
+
+<p>The most prominent use case for this plugin is to insert random alphanumeric characters into strings. For example, GitHub requires hashes to serve versions of open graph images for repositories. To use the latest versions you need a new random hash:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://opengraph.githubassets.com/&lt;any_hash_number&gt;/&lt;owner&gt;/&lt;repo&gt;
+</code></pre></div></div>
+
+<p>You can use this plugin to generate such urls:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://opengraph.githubassets.com/$/gouravkhunger/jekyll-hashsert"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">hashsert</span><span class="w"> </span><span class="p">%}</span>
+
+&lt;img src="<span class="p">{{</span><span class="w"> </span><span class="nv">image</span><span class="w"> </span><span class="p">}}</span>" alt="Open graph image for gouravkhunger/jekyll-hashsert GitHub repository" /&gt;
+</code></pre></div></div>
+
+<p>The output for <code class="language-plaintext highlighter-rouge">{{ image }}</code> in this case will look something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://opengraph.githubassets.com/bdguprmgh04z3mcrx9ah6qds4y2v0aw27ugyfim1kpgsmj7jnrt40n71vp5ussqj/gouravkhunger/jekyll-hashsert
+</code></pre></div></div>
+
+<h2 id="license">License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://github.com/gouravkhunger/jekyll-hashsert/blob/main/LICENSE">MIT License</a>.</p>
+
+
+
+  </div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name"><a href="https://gouravkhunger.me" target="_blank">Gourav Khunger</a></li>
+          <li>gouravkhunger18[at]gmail.com</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gouravkhunger" target="_blank" title="gouravkhunger"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://stackoverflow.com/users/9819031" target="_blank" title="9819031"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#stackoverflow"></use></svg></a></li><li><a rel="me" href="https://twitter.com/gourav_khunger" target="_blank" title="gourav_khunger"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li><li><a rel="me" href="https://www.youtube.com/gouravkhunger" target="_blank" title="gouravkhunger"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#youtube"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer></body>
+
+</html>
