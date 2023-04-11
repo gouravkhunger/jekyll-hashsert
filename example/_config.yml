@@ -12,10 +12,10 @@ remote_theme: jekyll/minima
 
 minima:
   social_links:
-    github: "gouravkhunger"
-    youtube: "gouravkhunger"
-    twitter: "gourav_khunger"
-    stackoverflow: "9819031"
+    - { platform: github,  user_url: "https://link.gouravkhunger.me/github" }
+    - { platform: youtube, user_url: "https://link.gouravkhunger.me/youtube" }
+    - { platform: twitter, user_url: "https://link.gouravkhunger.me/twitter" }
+    - { platform: stackoverflow, user_url: "https://link.gouravkhunger.me/stackoverflow" }
 
 plugins:
   - jekyll-hashsert
