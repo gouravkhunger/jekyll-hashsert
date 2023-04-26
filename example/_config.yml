@@ -1,7 +1,7 @@
 title: jekyll-hashsert
 description: >-
   jekyll-hashsert is a jekyll plugin that exposes a liquid filter which generates random alphanumeric hashes of custom length and inserts them into specific positions in an input string.
-url: "https://hashsert.gouravkhunger.me"
+url: "https://hashsert.gourav.sh"
 baseurl: ""
 
 author:
@@ -12,10 +12,10 @@ remote_theme: jekyll/minima
 
 minima:
   social_links:
-    - { platform: github,  user_url: "https://link.gouravkhunger.me/github" }
-    - { platform: youtube, user_url: "https://link.gouravkhunger.me/youtube" }
-    - { platform: twitter, user_url: "https://link.gouravkhunger.me/twitter" }
-    - { platform: stackoverflow, user_url: "https://link.gouravkhunger.me/stackoverflow" }
+    - { platform: github, user_url: "https://l.gourav.sh/github" }
+    - { platform: youtube, user_url: "https://l.gourav.sh/youtube" }
+    - { platform: twitter, user_url: "https://l.gourav.sh/twitter" }
+    - { platform: stackoverflow, user_url: "https://l.gourav.sh/stackoverflow" }
 
 plugins:
   - jekyll-hashsert
@@ -32,3 +32,5 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - LICENSE
+  - README.md
